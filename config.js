@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 
 const browserConfigurations = {
     executablePath: process.env.CHROMIUM_PATH,
-    headless: process.env.IS_HEADLESS,
+    // headless: false,
 }
 
 async function configureBrowser(){
