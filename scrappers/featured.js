@@ -6,7 +6,7 @@ async function featuredScrapper(page){
     const featuredImage = await(await page.$('.MuiGrid-root.MuiGrid-item')).evaluate(n => n.style.background.slice(4).split('"')[1])
     
     await page.click('.MuiGrid-root.MuiGrid-container')
-    const movieUrl = page.url()
+    const movieLink = page.url()
 
     await page.waitForSelector('.MuiTypography-root.MuiTypography-h5');
     const movieCategoriesSelector = '.show-movie__video-info .show-movie__video-genres .MuiChip-label'
@@ -19,7 +19,7 @@ async function featuredScrapper(page){
         categories.push(ctagory)
     }
 
-    return {featuredTitle, featuredImage, categories}
+    return {featuredTitle, featuredImage, categories, movieLink}
 }
 
 module.exports = featuredScrapper

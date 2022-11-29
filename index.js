@@ -30,7 +30,7 @@ async function menu() {
 }
 
 async function featuredMovie(page){
-    const {featuredTitle, featuredImage, categories} = await featuredScrapper(page)
+    const {featuredTitle, featuredImage, categories, movieLink} = await featuredScrapper(page)
 
     await page.close();
     
@@ -40,7 +40,7 @@ async function featuredMovie(page){
     const response = sanatizeFeatureUserResponse(answer)
 
     if(response === 'y'){
-        open(movieUrl)
+        open(movieLink)
     }
 }
 
