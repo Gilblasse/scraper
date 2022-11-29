@@ -3,7 +3,7 @@ const {open, prompt} = require('./utils')
 const configureBrowser = require("./config")
 const featuredScrapper = require('./scrappers/featured')
 const searchMovieScrapper = require('./scrappers/searchingMovie')
-const { sanitizeMovieTitle, sanatizeFeatureUserResponse } = require('./helper')
+const { sanitizeMovieTitle, sanatizeFeatureUserResponse, logColor } = require('./helper')
 
 
 async function menu() {
@@ -22,7 +22,7 @@ async function menu() {
         break;
 
         default:
-            console.log('exiting...')
+            console.log('Exiting ...')
         break;
     }
 
@@ -33,8 +33,12 @@ async function featuredMovie(page){
     const {featuredTitle, featuredImage, categories, movieLink} = await featuredScrapper(page)
 
     await page.close();
-    
-    console.log({featuredTitle, featuredImage, categories})
+
+    logColor(`
+    ${featuredTitle}
+    Image Cover: ${featuredImage}
+    Categories: ${categories.join(" | ")}
+    `)
 
     const answer = prompt("Would you like to See this Movie? ")
     const response = sanatizeFeatureUserResponse(answer)
@@ -52,7 +56,7 @@ async function searchingMovie(page) {
 
     const movieSelections = movieDetails.map(([title, date], i) => `${i + 1}. ${title} - ${date}`)
     
-    console.log(movieDetails[0][0] ? movieSelections : "Sorry Can't find it...")
+    logColor(movieDetails[0][0] ? movieSelections : "Sorry Can't find it...")
 
     if(movieDetails[0][0]){
         let selected = 0
