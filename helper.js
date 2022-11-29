@@ -3,7 +3,9 @@ function sanitizeMovieTitle(title) {
 }
 
 const sanatizeFeatureUserResponse = ans => {
-    console.log({ans})
+    if(ans.length === 0 ){
+        return ans
+    }
     return ans.replace(/[\s\n]/,'')[0].toLowerCase()
 }
 
