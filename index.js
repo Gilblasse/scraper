@@ -1,6 +1,7 @@
 const { inRange } = require('lodash')
 const {open, prompt} = require('./utils')
 const configureBrowser = require("./config")
+const testScraper = require('./sample')
 const featuredScrapper = require('./scrappers/featured')
 const searchMovieScrapper = require('./scrappers/searchingMovie')
 const { sanitizeMovieTitle, sanatizeFeatureUserResponse, logColor } = require('./helper')
@@ -71,4 +72,5 @@ async function searchingMovie(page) {
 }
 
 
-menu()
+// menu()
+testScraper()
